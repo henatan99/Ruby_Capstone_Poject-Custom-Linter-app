@@ -12,39 +12,24 @@ class ReadFile
     end
 
     def read_lines       
-        @data_lines = @file.readlines                  
+        @data_lines = @file.readlines                   
     end 
 
-    def parse_byspace
-        parse = String.new
-        big_parse = Array.new
-        for i in (1..@data.length) do                
-            parse << @data[i-1]   
-                   
-            if @data[i] == ' '  && @data[i-1] != ' ' 
-                big_parse << parse 
-                parse = []            
-            end     
+    def parse_lines
+        lines = []
+        @data_lines.each do |line|            
+            lines << line.split(' ', 100)             
         end 
-        big_parse << parse
-        big_parse
-    end   
-      
+        return lines
+    end        
 end 
 
 file = ReadFile.new("example.rb")
 file.open_file 
-file_read = file.read_file
-big_parse = file.parse_byspace
-
-puts big_parse.size
-
-puts big_parse[0]
-puts '------------'
-puts big_parse[1]
-puts '------------'
-puts big_parse[2]
-puts '------------'
-puts big_parse[3]
-puts '------------'
-puts big_parse[4]
+line_read = file.read_lines
+my_lines = file.parse_lines
+i = 1
+my_lines.each do |line|
+   puts "line #{i}: #{line}"
+   i += 1 
+end 
