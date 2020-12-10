@@ -69,15 +69,15 @@ describe CheckFile do
         end
 
         it "with index 1 returns an array of line number of def starts" do 
-            expect(test.line_level[1][1]).to eql(6)
+            expect(test.line_level[1][1][0]).to eql(6)
         end
 
         it "with index 1 returns an array of line number of def starts" do 
-            expect(test.line_level[1][2]).to eql(10)
+            expect(test.line_level[1][2][0]).to eql(10)
         end
 
         it "with index 1 returns an array of line number of def starts" do 
-            expect(test.line_level[1][3]).to eql(15)
+            expect(test.line_level[1][3][0]).to eql(15)
         end
 
         it "with index 1 returns an array of line number of def starts" do 

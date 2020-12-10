@@ -26,15 +26,12 @@ class CheckFile
                 i += 1
             end 
 
-            for i in (start..line_size) do 
-                if i == 1 && line_object[i-1] == ' '
-                line_spaces << i
-                end  
+            for i in (start..line_size) do                   
                 if  line_object[i-1] == ' ' && line_object[i] == ' '
-                    line_spaces << i                                             
+                    line_spaces << i                                                                  
                 end                
             end 
-            @line_space_array << line_spaces
+            @line_space_array << [j, line_spaces[0]] if !line_spaces.empty?
             @line_start_array << start 
             @line_size_array << line_size
             j += 1
@@ -54,8 +51,9 @@ class CheckFile
                 @level << -1 + @level[i-2]
             else 
                 @level << 0 + @level[i-2] 
-            end   
-            @def_start << i if @parsed_line[i-1].include?("def")          
+            end
+            x = @parsed_line[i-2] == [""] ? 1 : 0
+            @def_start << [i, x] if @parsed_line[i-1].include?("def")          
         end         
         return @level, @def_start
     end        
@@ -79,13 +77,13 @@ class CheckFile
         j = 0
         def_length = []
         @def_start.size.times do 
-            start = @def_start[j]
+            start = @def_start[j][0]
             count = 0
             for i in (start..@level.size)
                 count += 1
                 break if @level[i] == @level[start-1]
             end 
-            def_length << [@def_start[j], count + 1]
+            def_length << [@def_start[j][0], count + 1]
             j += 1
         end 
         def_length
