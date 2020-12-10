@@ -1,7 +1,7 @@
 require_relative 'file_reader'
 
 class CheckFile
-    attr_reader :line_object, :parsed_line
+    attr_reader :file_object, :parsed_line
 
     def initialize(file_object, parsed_line)
         @file_object = file_object
@@ -25,12 +25,13 @@ class CheckFile
                 break if line_object[i] != ' '
                 i += 1
             end 
+
             for i in (start..line_size) do 
                 if i == 1 && line_object[i-1] == ' '
-                line_spaces << [i]
+                line_spaces << i
                 end  
                 if  line_object[i-1] == ' ' && line_object[i] == ' '
-                    line_spaces << [i]                                             
+                    line_spaces << i                                             
                 end                
             end 
             @line_space_array << line_spaces
@@ -52,12 +53,12 @@ class CheckFile
             elsif @parsed_line[i-1].include?("end")
                 @level << -1 + @level[i-2]
             else 
-                @level << 0 + @level[i-2]
+                @level << 0 + @level[i-2] 
             end   
-            @def_start << i if @parsed_line[i-1].include?("def")            
+            @def_start << i if @parsed_line[i-1].include?("def")          
         end         
         return @level, @def_start
-    end     
+    end        
      
     def check_indent  
         self.line_level
@@ -66,9 +67,9 @@ class CheckFile
         file_size = @line_start_array.size
         i = 0
         file_size.times do 
-            diff = @line_start_array[i] - @level[i]
-            indent_chk << [i, diff] unless diff == 0
-            i += 1
+            diff = @line_start_array[i-1] - (@level[i-1] * 4)
+            indent_chk << [i, diff] unless diff == 0 || @parsed_line[i-1][0].empty?
+            i += 1 
         end 
         indent_chk
     end    
@@ -84,7 +85,7 @@ class CheckFile
                 count += 1
                 break if @level[i] == @level[start-1]
             end 
-            def_length << count 
+            def_length << [@def_start[j], count + 1]
             j += 1
         end 
         def_length

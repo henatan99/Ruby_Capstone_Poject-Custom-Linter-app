@@ -56,7 +56,13 @@ describe ReadFile do
             expect(test_file.parse_lines[1].last).to eq ""
         end 
         it " " do 
+            expect(test_file.parse_lines[4]).to eql([""])
+        end 
+        it " " do  
             expect(test_file.parse_lines[1].last).not_to eql(nil)
+        end 
+        it " " do 
+            expect(test_file.parse_lines.size).to eql(24)
         end 
     end 
 end 

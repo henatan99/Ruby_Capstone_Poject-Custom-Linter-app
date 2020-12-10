@@ -17,7 +17,7 @@ class ReadFile
         lines = []
         self.read_lines
         @data_lines.each do |line|            
-            lines << line.split(' ', 100)             
+            lines << line.split(' ', 100)            
         end 
         return lines
     end        
