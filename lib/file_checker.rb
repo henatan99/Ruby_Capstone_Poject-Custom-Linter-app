@@ -76,14 +76,18 @@ class CheckFile
     def method_check
         self.line_level
         j = 0
+        def_length = []
         @def_start.size.times do 
             start = @def_start[j]
+            count = 0
             for i in (start..@level.size)
                 count += 1
                 break if @level[i] == @level[start-1]
             end 
+            def_length << count 
             j += 1
         end 
+        def_length
     end 
 end 
 

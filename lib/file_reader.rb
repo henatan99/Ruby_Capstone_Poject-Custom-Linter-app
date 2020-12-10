@@ -1,4 +1,5 @@
 class ReadFile 
+    attr_accessor :file_name
     def initialize(file_name = 'empty')
         @file_name = file_name 
     end 
@@ -21,15 +22,3 @@ class ReadFile
         return lines
     end        
 end 
-
-# file = ReadFile.new("example.rb")
-# # file.open_file 
-# line_read = file.read_lines
-# puts line_read.size
-
-# my_lines = file.parse_lines
-# i = 1
-# my_lines.each do |line|
-#    puts "line #{i}: #{line}"
-#    i += 1 
-# end 
