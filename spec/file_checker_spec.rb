@@ -32,8 +32,7 @@ describe CheckFile do
       expect(test.lines).to be_kind_of(Array)
     end
     it ' raises Argument error when wrong object type is passed' do
-      expect { CheckFile.new(file_test, parsed_line).lines }.to \
-        raise_error { NoMethodError }
+      expect { CheckFile.new(file_test, parsed_line).lines }.to raise_error (NoMethodError)
     end
     it 'with index 2 returns an array of line numbers' do
       expect(test.lines[2].size).to eql(24)
