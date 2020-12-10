@@ -7,16 +7,19 @@ class ReadFile
         @file = File.open(@file_name)
     end 
 
-    def read_file       
+    def read_file      
+        self.open_file 
        @data  = @file.read                 
     end
 
-    def read_lines       
+    def read_lines    
+        self.open_file            
         @data_lines = @file.readlines                   
     end 
 
     def parse_lines
         lines = []
+        self.read_lines
         @data_lines.each do |line|            
             lines << line.split(' ', 100)             
         end 
@@ -24,12 +27,14 @@ class ReadFile
     end        
 end 
 
-file = ReadFile.new("example.rb")
-file.open_file 
-line_read = file.read_lines
-my_lines = file.parse_lines
-i = 1
-my_lines.each do |line|
-   puts "line #{i}: #{line}"
-   i += 1 
-end 
+# file = ReadFile.new("example.rb")
+# # file.open_file 
+# line_read = file.read_lines
+# puts line_read.size
+
+# my_lines = file.parse_lines
+# i = 1
+# my_lines.each do |line|
+#    puts "line #{i}: #{line}"
+#    i += 1 
+# end 
