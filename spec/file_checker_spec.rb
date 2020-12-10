@@ -113,5 +113,4 @@ describe CheckFile do
     end
   end
 end
-# rubocop:enable Metrics/LineLength
-# rubocop:enable Metrics/BlockLength
+
