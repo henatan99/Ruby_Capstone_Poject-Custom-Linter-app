@@ -1,11 +1,10 @@
 # rubocop:disable Metrics/PerceivedComplexity
 # rubocop:disable Metrics/CyclomaticComplexity
-# rubocop:disable Metrics/AbcSize
 # rubocop:disable Metrics/MethodLength
 # rubocop:disable Metrics/LineLength
 # rubocop:disable Style/For
 require_relative 'file_reader'
-#
+#CheckFile class 
 class CheckFile
   attr_reader :file_object, :parsed_line
 
@@ -28,6 +27,7 @@ class CheckFile
       while i < line_size
         start = i
         break if line_object[i] != ' '
+    
         i += 1
       end
 
@@ -95,8 +95,6 @@ end
 
 # rubocop:enable Metrics/PerceivedComplexity
 # rubocop:enable Metrics/CyclomaticComplexity
-# rubocop:enable Metrics/AbcSize
 # rubocop:enable Metrics/MethodLength
 # rubocop:enable Metrics/LineLength
-# rubocop:enable Metrics/BlockLength
 # rubocop:enable Style/For

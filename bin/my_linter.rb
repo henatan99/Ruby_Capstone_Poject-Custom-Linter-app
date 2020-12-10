@@ -1,4 +1,3 @@
-
 # rubocop:disable Metrics/LineLength
 require_relative '../lib/file_reader'
 require_relative '../lib/file_checker'
