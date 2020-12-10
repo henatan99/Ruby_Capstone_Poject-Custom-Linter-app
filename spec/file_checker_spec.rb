@@ -1,7 +1,4 @@
-# rubocop:disable Metrics/PerceivedComplexity
-# rubocop:disable Metrics/CyclomaticComplexity
-# rubocop:disable Metrics/AbcSize
-# rubocop:disable Metrics/MethodLength
+
 # rubocop:disable Layout/LineLength
 # rubocop:disable Metrics/BlockLength
 require_relative '../lib/file_checker'

@@ -1,9 +1,5 @@
-# rubocop:disable Metrics/PerceivedComplexity
-# rubocop:disable Metrics/CyclomaticComplexity
-# rubocop:disable Metrics/AbcSize
-# rubocop:disable Metrics/MethodLength
+
 # rubocop:disable Layout/LineLength
-# rubocop:disable Metrics/BlockLength
 require_relative '../lib/file_reader'
 require_relative '../lib/file_checker'
 
@@ -52,7 +48,6 @@ lines_size = chk_file.lines[2]
 lines_size.size.times do |i|
   puts "line #{i}: Too long line" if lines_size[i] > max_size
 end
-
 
 # rubocop:enable Metrics/PerceivedComplexity
 # rubocop:enable Metrics/CyclomaticComplexity

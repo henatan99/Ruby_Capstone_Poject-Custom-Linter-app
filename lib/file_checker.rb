@@ -3,7 +3,6 @@
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Metrics/MethodLength
 # rubocop:disable Layout/LineLength
-# rubocop:disable Metrics/BlockLength
 
 require_relative 'file_reader'
 # Cjek file class
