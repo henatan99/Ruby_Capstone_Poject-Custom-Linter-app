@@ -6,11 +6,11 @@ require_relative '../lib/file_reader'
 # Check file class
 
 describe CheckFile do
-  let(:test_file) { ReadFile.new('example.rb') }
+  let(:test_file) { ReadFile.new('example.txt') }
   let(:file_object) { test_file.read_lines }
   let(:parsed_line) { test_file.parse_lines }
   let(:test) { CheckFile.new(file_object, parsed_line) }
-  let(:file_test) { File.new('example.rb') }
+  let(:file_test) { File.new('example.txt') }
 
   describe 'initialize' do
     it 'creates a CheckFile object' do
@@ -32,7 +32,7 @@ describe CheckFile do
       expect(test.lines).to be_kind_of(Array)
     end
     it ' raises Argument error when wrong object type is passed' do
-      expect { CheckFile.new(file_test, parsed_line).lines }.to raise_error (NoMethodError)
+      expect { CheckFile.new(file_test, parsed_line).lines }.to raise_error NoMethodError
     end
     it 'with index 2 returns an array of line numbers' do
       expect(test.lines[2].size).to eql(24)

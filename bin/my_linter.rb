@@ -3,7 +3,7 @@
 require_relative '../lib/file_reader'
 require_relative '../lib/file_checker'
 
-file = ReadFile.new('example.rb')
+file = ReadFile.new('example.txt')
 file_object = file.read_lines
 parsed_line = file.parse_lines
 

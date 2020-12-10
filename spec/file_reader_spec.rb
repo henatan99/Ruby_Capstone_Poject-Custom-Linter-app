@@ -1,7 +1,7 @@
 require_relative '../lib/file_reader'
 describe ReadFile do
-  let(:test_file) { ReadFile.new('example.rb') }
-  let(:no_file) { ReadFile.new('tssh.rb') }
+  let(:test_file) { ReadFile.new('example.txt') }
+  let(:no_file) { ReadFile.new('tssh.txt') }
   describe 'initialize' do
     it ' creates a ReadFile object' do
       expect(test_file).to be_kind_of(ReadFile)
@@ -10,7 +10,7 @@ describe ReadFile do
       expect(no_file).to be_kind_of(ReadFile)
     end
     it ' creates a ReadFile object' do
-      expect(no_file.file_name).to eql('tssh.rb')
+      expect(no_file.file_name).to eql('tssh.txt')
     end
   end
 
