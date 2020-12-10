@@ -1,4 +1,4 @@
-# File reader
+#
 class ReadFile
   attr_accessor :file_name
   def initialize(file_name = 'empty')

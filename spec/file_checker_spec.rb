@@ -1,9 +1,7 @@
-
-# rubocop:disable Layout/LineLength
+# rubocop:disable Metrics/LineLength
 # rubocop:disable Metrics/BlockLength
 require_relative '../lib/file_checker'
 require_relative '../lib/file_reader'
-# Check file class
 
 describe CheckFile do
   let(:test_file) { ReadFile.new('example.txt') }
@@ -117,10 +115,5 @@ describe CheckFile do
     end
   end
 end
-
-# rubocop:enable Metrics/PerceivedComplexity
-# rubocop:enable Metrics/CyclomaticComplexity
-# rubocop:enable Metrics/AbcSize
-# rubocop:enable Metrics/MethodLength
-# rubocop:enable Layout/LineLength
+# rubocop:enable Metrics/LineLength
 # rubocop:enable Metrics/BlockLength

@@ -1,3 +1,5 @@
+# rubocop:disable Metrics/LineLength
+# rubocop:disable Metrics/BlockLength
 require_relative '../lib/file_reader'
 describe ReadFile do
   let(:test_file) { ReadFile.new('example.txt') }
@@ -66,3 +68,5 @@ describe ReadFile do
     end
   end
 end
+# rubocop:enable Metrics/LineLength
+# rubocop:enable Metrics/BlockLength

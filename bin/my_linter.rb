@@ -1,5 +1,5 @@
 
-# rubocop:disable Layout/LineLength
+# rubocop:disable Metrics/LineLength
 require_relative '../lib/file_reader'
 require_relative '../lib/file_checker'
 
@@ -48,10 +48,4 @@ lines_size = chk_file.lines[2]
 lines_size.size.times do |i|
   puts "line #{i}: Too long line" if lines_size[i] > max_size
 end
-
-# rubocop:enable Metrics/PerceivedComplexity
-# rubocop:enable Metrics/CyclomaticComplexity
-# rubocop:enable Metrics/AbcSize
-# rubocop:enable Metrics/MethodLength
-# rubocop:enable Layout/LineLength
-# rubocop:enable Metrics/BlockLength
+# rubocop:enable Metrics/LineLength

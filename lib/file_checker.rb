@@ -2,10 +2,10 @@
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Metrics/MethodLength
-# rubocop:disable Layout/LineLength
-
+# rubocop:disable Metrics/LineLength
+# rubocop:disable Style/For
 require_relative 'file_reader'
-# Cjek file class
+#
 class CheckFile
   attr_reader :file_object, :parsed_line
 
@@ -97,5 +97,6 @@ end
 # rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/AbcSize
 # rubocop:enable Metrics/MethodLength
-# rubocop:enable Layout/LineLength
+# rubocop:enable Metrics/LineLength
 # rubocop:enable Metrics/BlockLength
+# rubocop:enable Style/For
