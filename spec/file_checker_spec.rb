@@ -113,4 +113,3 @@ describe CheckFile do
     end
   end
 end
-
