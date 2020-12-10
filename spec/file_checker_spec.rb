@@ -1,6 +1,6 @@
 require_relative '../lib/file_checker'
 require_relative '../lib/file_reader'
-#test examples
+# test examples
 describe CheckFile do
   let(:test_file) { ReadFile.new('example.txt') }
   let(:file_object) { test_file.read_lines }
