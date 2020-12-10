@@ -7,11 +7,6 @@ class ReadFile
         @file = File.open(@file_name)
     end 
 
-    def read_file      
-        self.open_file 
-       @data  = @file.read                 
-    end
-
     def read_lines    
         self.open_file            
         @data_lines = @file.readlines                   
