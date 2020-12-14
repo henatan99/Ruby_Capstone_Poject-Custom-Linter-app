@@ -74,45 +74,45 @@ describe CheckFile do
   end
 
   describe 'method_indent' do
-    it ' ' do
+    it ' returns the index of method start' do
       expect(test.method_indent).to eql([[2, 0], \
                                          [6, 1], [10, 1], [15, 1], [24, 1]])
     end
   end
 
   describe 'line_level' do
-    it ' ' do
+    it ' returns the relative level of a line' do
       expect(test.line_level(parsed_line[2], parsed_line[1])).to eql(1)
     end
   end
 
   describe 'line_indent' do
-    it ' ' do
+    it ' returns the standard indent of a line' do
       expect(test.line_indent[2]).to eql(2)
     end
-    it ' ' do
+    it ' returns the standard indent of a line' do
       expect(test.line_indent[6]).to eql(2)
     end
-    it ' ' do
+    it ' returns the standard indent of a line' do
       expect(test.line_indent[5]).to eql(1)
     end
   end
 
   describe 'check_indent' do
-    it '' do
+    it 'returns the array of wrong indented lines' do
       expect(test.check_indent).to eql([[6, 1], \
                                         [16, -2], [19, 2], [25, -2], [28, 2]])
     end
   end
 
   describe 'method_check' do
-    it '' do
+    it 'returns arrau of method index with too long' do
       expect(test.method_check(15)).to eql([[24, 20]])
     end
   end
 
-  describe '' do
-    it '' do
+  describe 'empty_line' do
+    it 'returns array of index of unecessary empty lines' do
       expect(test.empty_line).to eql([30, 36])
     end
   end

@@ -10,7 +10,7 @@ while File.exist?(file_name) == false
   puts "File is not found, try again or exit with 'e' or 'exit' "
   file_name = gets.chomp
 end
-# file_name = 'example.txt'
+
 read_object = ReadFile.new(file_name)
 file_object = read_object.read_lines
 parsed_line = read_object.parse_lines
@@ -66,5 +66,4 @@ method_length.each do |method_length_item|
 end
 
 # Close file
-
-# read_object.close_file
+read_object.close_file

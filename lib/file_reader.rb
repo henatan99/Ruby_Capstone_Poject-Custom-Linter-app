@@ -10,7 +10,7 @@ class ReadFile
   end
 
   def close_file
-    @file = File.close(@file_name)
+    @file.close
   end
 
   def read_lines
