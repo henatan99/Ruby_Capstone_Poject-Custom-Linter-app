@@ -1,50 +1,67 @@
-# rubocop:disable Metrics/LineLength
 require_relative '../lib/file_reader'
 require_relative '../lib/file_checker'
 
-file = ReadFile.new('example.txt')
-file_object = file.read_lines
-parsed_line = file.parse_lines
+# puts 'Insert the name and path of the file for rubocop linter: '
+# file_name = gets.chomp
+# puts File.exist?(file_name)
+# while File.exist?(file_name) == false
+#   puts "File is not found, try again or exit with 'e' or 'exit' "
+#   file_name = gets.chomp
+# end
+file_name = 'example.txt'
+read_object = ReadFile.new(file_name)
+file_object = read_object.read_lines
+parsed_line = read_object.parse_lines
 
 chk_file = CheckFile.new(file_object, parsed_line)
 file_size = file_object.size
 
 # Indentation Error Message
 indent = chk_file.check_indent
-indent.size.times do |i|
-  puts "line #{indent[i][0]}: #{indent[i][1].abs} #{indent[i][1].positive? ? 'trailing' : 'leading'} white spaces detected"
+indent.each do |indent_item|
+  puts "line #{indent_item[0]}: #{indent_item[1].abs} \
+  #{indent_item[1].positive? ? 'more' : 'less'} indent space detected"
 end
 
 # Empty line before method
-y = []
-def_start = chk_file.line_level[1]
-def_start.size.times do |i|
-  puts "line #{def_start[i][0]}: empty line required above a new method" \
-  if def_start[i][0] > 2 && def_start[i][1].zero?
-  y << def_start[i][0]
+def_start = chk_file.method_indent
+def_start.each do |def_item|
+  puts "line #{def_item[0]}: empty line required above a new method" \
+  if def_item[1].zero? && def_item[0] > 2  
 end
 
 # Unecessary empty line
-file_size.times do |i|
-  puts "line #{i + 1}: Unecessary empty line detected" if parsed_line[i] == [''] \
-  && y.any?(i + 2) == false
-end
+empty_lines = chk_file.empty_line
+empty_lines.each do |empty_line_item|
+  puts "line #{empty_line_item}: Unecessary empty line detected"
+end 
 
 # Unecessary white space detected
-line_spaces = chk_file.lines[0]
-line_spaces.size.times do |i|
-  puts "line #{line_spaces[i][0] + 1}: column #{line_spaces[i][1] + 1}: \
+line_spaces = chk_file.line_space
+line_spaces.each do |line_space_item|
+  puts "line #{line_space_item[0]}: column #{line_space_item[1]}: \
   Unecessary white space detected"
 end
 
 # Unclosed tag detection
-last_level = chk_file.line_level[0].last
+last_level = chk_file.line_indent.last
 puts "line #{file_size}: Unclosed tag detected " if last_level != 0
 
 # line size detection
 max_size = 20
-lines_size = chk_file.lines[2]
-lines_size.size.times do |i|
-  puts "line #{i}: Too long line" if lines_size[i] > max_size
+lines_size = chk_file.line_sizes(max_size)
+lines_size.each do |line_size_item|
+  puts "line #{line_size_item[0]}: Too long line #{line_size_item[1]}/#{max_size}"
 end
-# rubocop:enable Metrics/LineLength
+
+# method length detection
+max_length = 15
+method_length = chk_file.method_check(max_length)
+method_length.each do |method_length_item|
+  puts "line #{method_length_item[0]}: Too long method \
+  #{method_length_item[1]}/#{max_length}"
+end
+
+# Close file
+
+# read_object.close_file

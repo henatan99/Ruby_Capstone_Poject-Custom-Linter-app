@@ -25,7 +25,8 @@ describe ReadFile do
 
   describe 'read_lines' do
     it ' returns a line as a string when called with index' do
-      expect(test_file.read_lines[1]).to eq "  def initialize(file_name = 'empty')\n"
+      expect(test_file.read_lines[1]).to eq \
+        "  def initialize(file_name = 'empty')\n"
     end
 
     it ' stores the file in line by line elements array' do
@@ -41,7 +42,7 @@ describe ReadFile do
     end
 
     it ' returns methiod error when index is out of range' do
-      expect(test_file.read_lines.size).to eql(24)
+      expect(test_file.read_lines.size).to eql(23)
     end
   end
 
@@ -62,7 +63,7 @@ describe ReadFile do
       expect(test_file.parse_lines[1].last).not_to eql(nil)
     end
     it ' ' do
-      expect(test_file.parse_lines.size).to eql(24)
+      expect(test_file.parse_lines.size).to eql(23)
     end
   end
 end

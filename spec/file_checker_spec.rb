@@ -12,104 +12,105 @@ describe CheckFile do
     it 'creates a CheckFile object' do
       expect(test).to be_kind_of(CheckFile)
     end
+
+    it 'creates a CheckFile object' do
+      expect(file_object[4][5]).to eql(nil)
+    end
+
     it ' raises Argument error when wrong number of argument given' do
       expect { CheckFile.new(file_object) }.to raise_error(ArgumentError)
     end
+
     it ' raises Argument error when no argument given' do
       expect { CheckFile.new }.to raise_error(ArgumentError)
     end
+
     it " doesn't return nil when wrong object type is passed" do
       expect(CheckFile.new(file_test, parsed_line)).not_to eql(nil)
     end
   end
 
-  describe 'lines' do
-    it 'returns an array of size 3' do
-      expect(test.lines).to be_kind_of(Array)
+  describe 'line_sizes' do
+    it 'returns an array' do
+      expect(test.line_sizes(10)).to be_kind_of(Array)
     end
-    it ' raises Argument error when wrong object type is passed' do
-      expect { CheckFile.new(file_test, parsed_line).lines }.to raise_error NoMethodError
+    it 'returns an ArumentError' do
+      expect { test.line_sizes }.to raise_error(ArgumentError)
     end
-    it 'with index 2 returns an array of line numbers' do
-      expect(test.lines[2].size).to eql(24)
+    it 'returns an ArumentError' do
+      expect { test.line_sizes }.to raise_error(ArgumentError)
     end
-    it 'with index 1 returns an array of starting column of each lines' do
-      expect(test.lines[1][1]).to eql(2)
+    it 'returns index Array of too long lines' do
+      expect(test.line_sizes(35)).to eql([[2, 38], [7, 42], [19, 38], [28, 38]])
     end
+  end
 
-    it 'with index 1 returns an array of starting column of each lines' do
-      expect(test.lines[1]).to eql([0, 2, 4, 2, 0, 2, 4, 2, 0, 2, 4, 4, 2, 0, 2, 4, 4, 4, 8, 4, 4, 2, 0, 0])
+  describe 'white_space' do
+    it 'returns nil' do
+      expect(test.white_space(' shfsh')).to eql(nil)
     end
+    it 'returns nil' do
+      expect(test.white_space(' shfsh hkh')).to eql(nil)
+    end
+    it 'returns column for white space eol' do
+      expect(test.white_space(' shfsh ')).to eql(7)
+    end
+    it 'returns column for white space eol' do
+      expect(test.white_space(' ')).to eql(1)
+    end
+    it 'returns nil when line is empty' do
+      expect(test.white_space('')).to eql(nil)
+    end
+  end
 
-    it 'with index 1 returns an array of starting column of each lines' do
-      expect(test.lines[1][10]).to eql(4)
+  describe 'line_spaces' do
+    it 'returns an Array' do
+      expect(test.line_space).to be_kind_of(Array)
     end
-    it 'with index 0 returns an array of unnessasry space columns of each lines' do
-      expect(test.lines[0][2]).to eql([10, 19])
+    it 'returns an Array' do
+      expect(test.line_space).to eql([[3, 30], [5, 3], [7, 42], [10, 19], [18, 24], [36, 5]])
     end
-    it 'with index 0 returns an array of unnessasry space columns of each lines' do
-      expect(test.lines[0][2]).not_to eq ' '
-    end
-    it 'returns an array without any white_space element' do
-      expect(test.lines[0][2].include?(' ')).not_to be_truthy
+  end
+
+  describe 'method_indent' do
+    it ' ' do
+      expect(test.method_indent).to eql([[2, 0], [6, 1], [10, 1], [15, 1], [24, 1]])
     end
   end
 
   describe 'line_level' do
-    it 'returns an array of size 2' do
-      expect(test.line_level).to be_kind_of(Array)
+    it ' ' do
+      expect(test.line_level(parsed_line[2], parsed_line[1])).to eql(1)
     end
-    it 'with index 0 returns an array of indentation level of lines' do
-      expect(test.line_level[0][1]).to eql(1)
-    end
-    it 'with index 0 returns an array of indentation level of lines' do
-      expect(test.line_level[0][2]).to eql(2)
-    end
-    it 'with index 0 returns an array of indentation level of lines' do
-      expect(test.line_level[0][3]).to eql(1)
-    end
+  end
 
-    it 'with index 1 returns an array of line number of def starts' do
-      expect(test.line_level[1][1][0]).to eql(6)
+  describe 'line_indent' do
+    it ' ' do
+      expect(test.line_indent[2]).to eql(2)
     end
-
-    it 'with index 1 returns an array of line number of def starts' do
-      expect(test.line_level[1][2][0]).to eql(10)
+    it ' ' do
+      expect(test.line_indent[6]).to eql(2)
     end
-
-    it 'with index 1 returns an array of line number of def starts' do
-      expect(test.line_level[1][3][0]).to eql(15)
-    end
-
-    it 'with index 1 returns an array of line number of def starts' do
-      expect(test.line_level[0].size).to eql(24)
-    end
-
-    it 'with index 1 returns an array of line number of def starts' do
-      expect(test.line_level[0]).to eql([0, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2,\
-                                         2, 1, 1, 1, 2, 2, 2, 3, 2, 2, 1, 0, 0])
+    it ' ' do
+      expect(test.line_indent[5]).to eql(1)
     end
   end
 
   describe 'check_indent' do
-    it 'returns an array of pairs' do
-      expect(test.check_indent).to be_kind_of(Array)
-    end
-    it 'returns an array of pairs' do
-      expect(test.check_indent[0]).to eql([19, 2])
-    end
-    it 'returns an array of pairs' do
-      expect(test.check_indent).to eql([[19, 2]])
+    it '' do
+      expect(test.check_indent).to eql([[6, 1], [16, -2], [19, 2], [25, -2], [28, 2]])
     end
   end
 
   describe 'method_check' do
-    it 'returns an array' do
-      expect(test.method_check).to be_kind_of(Array)
-    end
-
-    it 'returns an array' do
-      expect(test.method_check).to eql([[2, 3], [6, 3], [10, 4], [15, 8]])
+    it '' do
+      expect(test.method_check).to eql([[2, 2], [6, 2], [10, 3], [15, 7]])
     end
   end
+
+  describe '' do
+    it '' do
+      expect(test.empty_line).to eql([30, 36])
+    end 
+  end 
 end
