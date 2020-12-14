@@ -20,12 +20,13 @@ The program will ctach unecessaruy white space in a line and loops through each 
 The program checks for balance of line standard indeentation level and checks if there is unclosed tab and puts error message when one founds
 
 ## line size detection
-The program will count the size of each line strings and puts error message when it exceeds the set maximum 
+The program will count the size of each line strings and puts error message when it exceeds the set maximum
 
+## Method length detection
+The program will count the length of each method blocks and puts error message when it exceeds the set maximum 
  
 ![screenshot](assets/demo.png)
  
-
 ## Built With
 
 - Ruby

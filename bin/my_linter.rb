@@ -1,14 +1,16 @@
 require_relative '../lib/file_reader'
 require_relative '../lib/file_checker'
 
-# puts 'Insert the name and path of the file for rubocop linter: '
-# file_name = gets.chomp
-# puts File.exist?(file_name)
-# while File.exist?(file_name) == false
-#   puts "File is not found, try again or exit with 'e' or 'exit' "
-#   file_name = gets.chomp
-# end
-file_name = 'example.txt'
+puts 'Insert the name and path of the file for rubocop linter: '
+file_name = gets.chomp
+puts File.exist?(file_name) ? 'file exists' : 'file does not exist'
+exit_string = %w[e exit]
+while File.exist?(file_name) == false
+  exit if exit_string.include?(file_name)
+  puts "File is not found, try again or exit with 'e' or 'exit' "
+  file_name = gets.chomp
+end
+# file_name = 'example.txt'
 read_object = ReadFile.new(file_name)
 file_object = read_object.read_lines
 parsed_line = read_object.parse_lines
