@@ -23,6 +23,7 @@ class CheckFile
     start = 0
     while start < line.size
       break if line[start] != ' '
+
       start += 1
     end
     start
@@ -31,6 +32,7 @@ class CheckFile
   # space of a line argument
   def white_space(line)
     return line.size if line[line.size - 2] == ' '
+
     (line_start(line)..line.size).each do |col|
       return col if line[col - 1] == ' ' && [' ', nil].include?(line[col])
     end
@@ -83,9 +85,7 @@ class CheckFile
     indent_chk = []
     @file_object.each_with_index do |line, idx|
       diff = line_start(line) - (@level[idx] * 2)
-      if diff.zero? == false && @parsed_line[idx][0].empty? == false
-        indent_chk << [idx + 1, diff]
-      end
+      indent_chk << [idx + 1, diff] if diff.zero? == false && @parsed_line[idx][0].empty? == false
     end
     indent_chk
   end
