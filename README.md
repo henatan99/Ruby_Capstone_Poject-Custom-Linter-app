@@ -40,9 +40,9 @@ The usage of this program is simple.
 - Ruby
 
 ## Setup
-- copy the files in bin and lib to the working directory 
-- Create class object by giving file name and path as argument 
-    file = ReadFile.new('example.rb')
+- copy the program folder in your project directory
+- run the user interface 'my_linter.rb' from bin folder 
+- Once message displayed asking the file name, input the file name
 
 **Run the code demonstrations below**
 
