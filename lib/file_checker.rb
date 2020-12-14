@@ -37,8 +37,6 @@ class CheckFile
     nil
   end
 
-  # line_space class returns an array of pairs of line index and
-  # columns of unecessary white space
   def line_space
     @line_space_array = []
     @file_object.each_with_index do |line, idx|
@@ -106,11 +104,13 @@ class CheckFile
   end
 
   def empty_line
+    method_indent
     empty_lines = []
     def_start0 = []
-    @def_start.each {|item| def_start0 << item[0]}
+    @def_start.each { |item| def_start0 << item[0] }
     @parsed_line.each_with_index do |line_item, idx|
-      empty_lines << idx + 1 if line_item[0].empty? && def_start0.include?(idx+2) == false 
+      empty_lines << idx + 1 if line_item[0].empty? \
+      && def_start0.include?(idx + 2) == false
     end
     empty_lines
   end

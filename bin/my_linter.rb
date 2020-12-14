@@ -27,14 +27,14 @@ end
 def_start = chk_file.method_indent
 def_start.each do |def_item|
   puts "line #{def_item[0]}: empty line required above a new method" \
-  if def_item[1].zero? && def_item[0] > 2  
+  if def_item[1].zero? && def_item[0] > 2
 end
 
 # Unecessary empty line
 empty_lines = chk_file.empty_line
 empty_lines.each do |empty_line_item|
   puts "line #{empty_line_item}: Unecessary empty line detected"
-end 
+end
 
 # Unecessary white space detected
 line_spaces = chk_file.line_space
@@ -51,7 +51,8 @@ puts "line #{file_size}: Unclosed tag detected " if last_level != 0
 max_size = 20
 lines_size = chk_file.line_sizes(max_size)
 lines_size.each do |line_size_item|
-  puts "line #{line_size_item[0]}: Too long line #{line_size_item[1]}/#{max_size}"
+  puts "line #{line_size_item[0]}: Too long line \
+  #{line_size_item[1]}/#{max_size}"
 end
 
 # method length detection

@@ -38,11 +38,11 @@ describe ReadFile do
     end
 
     it ' returns nil when index is out of range' do
-      expect(test_file.read_lines[26]).to eql(nil)
+      expect(test_file.read_lines[50]).to eql(nil)
     end
 
     it ' returns methiod error when index is out of range' do
-      expect(test_file.read_lines.size).to eql(23)
+      expect(test_file.read_lines.size).to eql(45)
     end
   end
 
@@ -63,7 +63,7 @@ describe ReadFile do
       expect(test_file.parse_lines[1].last).not_to eql(nil)
     end
     it ' ' do
-      expect(test_file.parse_lines.size).to eql(23)
+      expect(test_file.parse_lines.size).to eql(45)
     end
   end
 end

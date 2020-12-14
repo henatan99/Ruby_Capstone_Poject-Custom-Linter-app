@@ -68,13 +68,15 @@ describe CheckFile do
       expect(test.line_space).to be_kind_of(Array)
     end
     it 'returns an Array' do
-      expect(test.line_space).to eql([[3, 30], [5, 3], [7, 42], [10, 19], [18, 24], [36, 5]])
+      expect(test.line_space).to eql([[3, 30], [5, 3], \
+                                      [7, 42], [10, 19], [18, 24], [36, 5]])
     end
   end
 
   describe 'method_indent' do
     it ' ' do
-      expect(test.method_indent).to eql([[2, 0], [6, 1], [10, 1], [15, 1], [24, 1]])
+      expect(test.method_indent).to eql([[2, 0], \
+                                         [6, 1], [10, 1], [15, 1], [24, 1]])
     end
   end
 
@@ -98,19 +100,20 @@ describe CheckFile do
 
   describe 'check_indent' do
     it '' do
-      expect(test.check_indent).to eql([[6, 1], [16, -2], [19, 2], [25, -2], [28, 2]])
+      expect(test.check_indent).to eql([[6, 1], \
+                                        [16, -2], [19, 2], [25, -2], [28, 2]])
     end
   end
 
   describe 'method_check' do
     it '' do
-      expect(test.method_check).to eql([[2, 2], [6, 2], [10, 3], [15, 7]])
+      expect(test.method_check(15)).to eql([[24, 20]])
     end
   end
 
   describe '' do
     it '' do
       expect(test.empty_line).to eql([30, 36])
-    end 
-  end 
+    end
+  end
 end
